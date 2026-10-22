@@ -1,0 +1,6 @@
+const V='fc-v17',CORE=['./','index.html','recipes.html','bot.html','catalog.html','unique.html','catalog/index.json','offline.html','style.css','site.js','app.js','data.json','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png','fonts/fonts.css','fonts/Manrope-normal-cyrillic.woff2','fonts/PlayfairDisplay-normal-cyrillic.woff2','img/hero-1024.webp','img/hero-m.webp','img/hero-480.webp','img/fish-960.webp'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
+ if(r.mode==='navigate'){e.respondWith(fetch(r).then(res=>{const c=res.clone();caches.open(V).then(x=>x.put(r,c));return res}).catch(()=>caches.match(r,{ignoreSearch:true}).then(m=>m||caches.match('offline.html'))));return}
+ e.respondWith(caches.match(r).then(m=>{const net=fetch(r).then(res=>{if(res.ok){const c=res.clone();caches.open(V).then(x=>x.put(r,c))}return res}).catch(()=>m);return m||net}))});

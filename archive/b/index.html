@@ -1,0 +1,48 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Вариант B — Огород</title><meta name="theme-color" content="#16331f"><link rel="manifest" href="../../manifest.webmanifest"><link rel="icon" href="../../icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+<style>
+:root{--f:#16331f;--m:#e8efd6;--s:#f3a73b;--t:#c8462f;--l:#a7c97b;--serif:"Cooper Black","Recoleta","Georgia",serif;--sans:system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box;margin:0}body{background:var(--m);color:var(--f);font:17px/1.55 var(--sans);overflow-x:clip}a{color:inherit}
+.w{max-width:1160px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;max-width:1160px;margin:0 auto}nav b{font:700 22px var(--serif)}nav a{text-decoration:none;margin-left:16px;font-weight:600}
+.hero{position:relative;background:var(--f);color:var(--m);border-radius:0 0 50% 50%/0 0 12% 12%;padding:60px 0 140px;overflow:hidden}
+.hero h1{font:700 clamp(52px,9vw,132px)/.92 var(--serif);letter-spacing:-.03em;max-width:900px;position:relative;z-index:2}
+.hero h1 span{color:var(--s)}.hero p{max-width:520px;font-size:20px;margin-top:22px;opacity:.85;position:relative;z-index:2}
+.pill{display:inline-flex;gap:10px;margin-top:30px;background:var(--s);color:var(--f);padding:16px 26px;border-radius:99px;font-weight:700;text-decoration:none;position:relative;z-index:2;transition:transform .3s cubic-bezier(.3,1.8,.5,1)}.pill:hover{transform:scale(1.06) rotate(-2deg)}
+.blobs{position:absolute;inset:0;z-index:1}.blob{position:absolute;filter:blur(.5px)}
+.blob path{animation:morph 14s ease-in-out infinite alternate}@keyframes morph{50%{d:path("M60,-58C76,-41,86,-20,85,0C84,20,72,40,56,55C40,70,20,80,-2,82C-24,84,-48,78,-62,62C-76,46,-80,22,-79,0C-78,-22,-72,-44,-57,-61C-42,-78,-21,-90,-1,-89C19,-88,44,-75,60,-58Z")}}
+.sprout{animation:sway 4s ease-in-out infinite alternate;transform-origin:bottom center}@keyframes sway{to{transform:rotate(6deg)}}
+.beds{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-80px;position:relative;z-index:3}
+.bed{background:#fff;border-radius:40px 40px 40px 8px;padding:26px;box-shadow:0 24px 40px -24px #16331f55;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.bed:nth-child(2){border-radius:40px 8px 40px 40px;transform:translateY(24px)}.bed:hover{transform:translateY(-8px) rotate(-1deg)}
+.bed .n{font:700 64px/1 var(--serif);color:var(--t)}.bed h3{font:700 22px var(--serif);margin:6px 0}
+h2{font:700 clamp(40px,6vw,80px)/.95 var(--serif);letter-spacing:-.02em;margin:110px 0 34px}
+.row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 30px}
+.card{flex:0 0 300px;scroll-snap-align:start;background:var(--f);color:var(--m);border-radius:32px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.card:nth-child(3n+2){background:var(--t)}.card:nth-child(3n+3){background:#2e5a37}
+.card h3{font:700 26px/1.05 var(--serif)}.card .p{font:700 40px var(--serif);color:var(--s)}.card:nth-child(3n+2) .p{color:var(--m)}
+.dots{display:flex;gap:6px;align-items:end;height:60px}.dots i{flex:1;border-radius:99px 99px 6px 6px;background:var(--m);opacity:.85}
+.card .bs{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.card .bs button{border:0;border-radius:99px;padding:8px 12px;background:#ffffff22;color:inherit;cursor:pointer;font:600 13px var(--sans)}.card .bs button:hover{background:#ffffff44}
+.basket{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:40px 0 80px}
+#rc{background:#fffdf6;border-radius:28px;padding:26px;font:14px/1.6 ui-monospace,monospace;box-shadow:0 30px 50px -30px #16331f88;transform:rotate(1.5deg)}
+footer{background:var(--f);color:var(--m);padding:40px 22px;text-align:center;border-radius:50% 50% 0 0/14% 14% 0 0}
+.rv{animation:grow both cubic-bezier(.3,1.4,.5,1);animation-timeline:view();animation-range:entry 0% cover 30%}@keyframes grow{from{opacity:0;transform:translateY(60px) scale(.9)}}
+@media(max-width:820px){.beds{grid-template-columns:1fr;margin-top:-60px}.bed:nth-child(2){transform:none}.basket{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+html{overflow-x:clip}.basket>*{min-width:0}h2{overflow-wrap:anywhere}</style></head><body>
+<div class="hero"><nav style="color:var(--m)"><b>🌱 Еда калькулятор</b><span><a href="#r">Рецепты</a><a href="../../bot.html">Бот</a><a href="../index.html">Варианты</a></span></nav>
+<div class="blobs" aria-hidden="true">
+<svg class="blob" style="right:-6%;top:4%;width:46%" viewBox="-100 -100 200 200"><path fill="#f3a73b" d="M55,-62C70,-47,80,-24,80,0C80,25,69,49,52,63C35,77,12,81,-11,79C-34,77,-57,69,-70,52C-83,35,-86,10,-80,-12C-74,-34,-59,-53,-41,-67C-23,-81,0,-90,22,-86C44,-82,40,-77,55,-62Z"/></svg>
+<svg class="blob" style="right:18%;top:48%;width:22%" viewBox="-100 -100 200 200"><path fill="#c8462f" d="M48,-50C62,-36,72,-18,72,0C72,18,62,36,48,52C34,68,17,82,-2,84C-21,86,-42,76,-57,60C-72,44,-82,22,-80,2C-78,-18,-64,-36,-49,-50C-34,-64,-17,-74,1,-75C19,-76,34,-64,48,-50Z"/></svg>
+<svg class="sprout" style="position:absolute;right:30%;top:16%;width:90px" viewBox="0 0 60 100"><path d="M30 100 V45" stroke="#a7c97b" stroke-width="5"/><path d="M30 55 C5 50 2 28 4 20 C20 22 32 35 30 55Z M30 45 C55 40 58 18 56 8 C40 10 28 25 30 45Z" fill="#a7c97b"/></svg></div>
+<div class="w"><h1>Ужин растёт <span>из того, что есть</span> на полке.</h1><p>Бюджет, «не хочу лук», цели по КБЖУ и ваша техника. Сервис собирает настоящий рецепт из реальных товаров магазина.</p><a class="pill" href="https://t.me/Top_FoodBot">Посадить ужин в Telegram →</a></div></div>
+<main class="w"><div class="beds"><div class="bed rv"><div class="n">625</div><h3>рецептов с рейтингом</h3><p>408 семейств, средняя оценка 4,73.</p></div><div class="bed rv"><div class="n">±10%</div><h3>точность КБЖУ</h3><p>Белок не ниже цели, считает оптимизатор.</p></div><div class="bed rv"><div class="n">18</div><h3>видов техники</h3><p>Аэрогриль, мультиварка, скороварка…</p></div></div>
+<h2 id="r" class="rv">Урожай этой недели</h2><div class="row" id="row"></div>
+<div class="basket"><div class="rv"><h2 style="margin:0 0 18px">Корзинка без лишнего</h2><p>Чек обезличен, пока вы не выбрали магазин. Сейчас доступен SPAR, остальные сети в разработке.</p></div><div id="rc" class="rv"></div></div></main>
+<footer>Снимок цен: <span id="sn"></span> · / или ⌘K для поиска</footer>
+<script src="../../app.js"></script><script>
+FC.ready.then(d=>{document.getElementById('sn').textContent=d.snapshot;const row=document.getElementById('row');
+d.recipes.forEach((r,i)=>{const k=r.kbju,m=Math.max(k.protein,k.fat,k.carbs);const c=document.createElement('article');c.className='card rv';
+c.innerHTML=`<small>${r.protein} · ${r.time_min} мин</small><h3>${FC.esc(r.title)}</h3><div class="p">${Math.round(r.cost)} ₽</div><div class="dots" aria-label="Б ${k.protein}, Ж ${k.fat}, У ${k.carbs}">${[k.protein,k.fat,k.carbs].map(v=>`<i style="height:${v/m*100}%"></i>`).join('')}</div><small>Б ${k.protein} · Ж ${k.fat} · У ${k.carbs} · ${Math.round(k.kcal)} ккал</small><div class="bs"><button data-a="fav">♥</button><button data-a="list">+ список</button><button data-a="cook">▶ готовить</button><button data-a="rc">чек</button></div>`;
+c.querySelector('.bs').onclick=e=>{const a=e.target.dataset.a;if(a==='fav')FC.toggleFav(i+'');if(a==='list')FC.addToList(r);if(a==='cook')FC.cook(r);if(a==='rc'){FC.receipt(document.getElementById('rc'),r);document.getElementById('rc').scrollIntoView({behavior:'smooth',block:'center'})}};row.append(c)});
+FC.receipt(document.getElementById('rc'),d.recipes[0])});
+</script></body></html>
