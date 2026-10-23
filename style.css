@@ -299,3 +299,22 @@ h1{line-height:1.12}
 main{min-height:0}
 .calc input,.calc select{border:1.5px solid #cfc4b6}
 ::selection{background:rgba(173,68,46,.2);color:#1f1a17}input,textarea,select{font-family:inherit;font-synthesis:none;caret-color:#ad442e;font-variant-numeric:tabular-nums}input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea{font-size:max(16px,1em)}input::placeholder,textarea::placeholder{font:inherit;color:#a0958a;opacity:1}input:-webkit-autofill,input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 1000px #fff inset!important;-webkit-text-fill-color:#1f1a17!important;transition:background-color 99999s}
+
+/* hero mobile: симметричные поля, естественные 4:3 (fix 22.10) */
+@media (max-width:760px){.hero3 .hbg{width:auto!important;max-width:none;margin:8px 18px 0!important;aspect-ratio:4/3!important;min-height:0!important;border-radius:24px;overflow:hidden}.hero3 .hbg img{position:absolute;inset:0;width:100%;height:100%;min-height:0;aspect-ratio:auto;object-fit:cover;object-position:center}}
+@media (max-width:760px){.calc{grid-template-columns:minmax(0,1fr)!important}.calc .f,.calc .r{min-width:0}.calc form{grid-template-columns:minmax(0,1fr)}.calc input,.calc select{min-width:0;width:100%;box-sizing:border-box}}
+
+.portion{margin:8px 0 0;font-size:12.5px;line-height:1.4;color:var(--mute)}.rcard{cursor:pointer}
+.ph0{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#f3e9dc,#e9dccb)}
+/* масштаб iOS HIG на мобиле (23.10.2026): body 16, подписи 12–13, заголовки 28–32, сетка 8/12/16, контролы 44 */
+@media (max-width:640px){
+body{font-size:16px}.lead{font-size:16px;line-height:1.5}
+.hero h1,.hcopy h1,.page-h h1{font-size:31px;line-height:1.12;margin:10px 0 12px}
+.sh h2,.band h2,.calc .f h2{font-size:26px}.rd h2{font-size:24px}.rcard h3{font-size:19px}
+.page-h{padding:28px 0 16px}.wrap{padding:0 16px}
+.calc .f{padding:24px 16px}
+dialog.rd{width:calc(100vw - 16px);max-width:none;margin:auto;border-radius:22px}
+.rd .bd{padding:16px}
+.kbju{gap:6px}.kbju div{padding:8px 4px;border-radius:12px}.kbju b{font-size:16px}.kbju span{font-size:11.5px;line-height:1.25}
+.more .btn,.q .btn{min-height:44px}
+}
