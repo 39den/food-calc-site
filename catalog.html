@@ -1,42 +1,37 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Каталог рецептов — Еда калькулятор</title><meta name="description" content="Реальные расчёты ужинов: цена, КБЖУ, время. Калькулятор нормы калорий."><meta name="theme-color" content="#faf6ef">
-<link rel="preload" href="fonts/Manrope-normal-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/PlayfairDisplay-normal-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"></head><body>
-<header class="nav"><div class="wrap"><a class="logo" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#c8553d"/><path d="M9 17.5c0-4 3.1-7 7-7s7 3 7 7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M7.5 19.5h17" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="8.2" r="1.6" fill="#fff"/></svg> <span class="lt">Еда <span class="lt2">калькулятор</span></span></a><nav class="links" id="mnav" aria-label="Разделы"><a href="index.html">Главная</a><a href="recipes.html" >Рецепты</a><a href="catalog.html" aria-current="page">Каталог</a><a href="bot.html">Бот</a></nav><div class="nav-tools" data-fc-inline><a class="btn pri tg" href="https://t.me/Top_FoodBot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg> Открыть в Telegram</a></div><button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button></div></header><main>
-<div class="wrap page-h"><span class="eyebrow">Кухни мира</span><h1>Каталог рецептов</h1><p class="lead" id="cnt">Загружаю…</p>
-<div class="cat-tools"><input id="q" type="search" placeholder="Поиск: борщ, курица, паста…" aria-label="Поиск"><select id="cu" aria-label="Кухня"><option value="">Все кухни</option></select><select id="ml" aria-label="Приём пищи"><option value="">Любой приём пищи</option><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="snack">Перекус/десерт</option></select><select id="tm" aria-label="Время"><option value="">Любое время</option><option value="30">до 30 мин</option><option value="60">до 60 мин</option></select></div>
-<div id="list" class="cat-grid"></div><nav class="cat-pager" id="pager" aria-label="Страницы"></nav>
-<dialog id="dlg" class="cat-dlg"><button class="cat-x" onclick="dlg.close()" aria-label="Закрыть">×</button><div id="dc"></div></dialog></div>
-<style>
-.cat-tools{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}.cat-tools input{flex:1 1 260px}.cat-tools input,.cat-tools select{padding:.65rem .8rem;border:1px solid #d9cfc0;border-radius:12px;background:#fff;font:inherit}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
-.cat-card{background:#fff;border:1px solid #eadfce;border-radius:16px;overflow:hidden;cursor:pointer;text-align:left;font:inherit;padding:0}
-.cat-ph{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f4ebdd,#efe2cf);color:#c8553d;font-size:2.2rem}
-.cat-ph small{display:block;font-size:.75rem;color:#8a7a66;text-align:center;margin-top:.2rem}
-.cat-b{padding:.8rem .9rem}.cat-b h3{font-size:1rem;margin:0 0 .35rem;line-height:1.3}.cat-m{font-size:.82rem;color:#6d5f4f}
-.cat-pager{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin:1.5rem 0}.cat-pager button{min-width:2.4rem;padding:.45rem .6rem;border:1px solid #d9cfc0;border-radius:10px;background:#fff;font:inherit}.cat-pager button[aria-current]{background:#c8553d;color:#fff;border-color:#c8553d}
-.cat-dlg{max-width:680px;width:92vw;border:0;border-radius:18px;padding:1.4rem}.cat-x{float:right;border:0;background:none;font-size:1.6rem;cursor:pointer}.cat-dlg li{margin:.25rem 0}.cat-src{font-size:.8rem;color:#6d5f4f}
-</style>
-<script>
-(()=>{const PER=24,E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const IC={'курица':'🍗','индейка':'🍗','говядина':'🥩','свинина':'🥩','фарш':'🥩','рыба':'🐟','рыбные консервы':'🐟','яйца':'🥚','творог':'🧀','бобовые':'🫘','субпродукты':'🥩','выпечка':'🥧','овощи':'🥗'};
-let all=[],page=0,cache={};const $=id=>document.getElementById(id);
-fetch('catalog/index.json').then(r=>r.json()).then(d=>{all=d.items;window.PERFILE=d.per;
- [...new Set(all.map(x=>x.c))].sort().forEach(c=>$('cu').insertAdjacentHTML('beforeend',`<option>${E(c)}</option>`));
- const u=new URLSearchParams(location.search);if(u.get('q'))$('q').value=u.get('q');render()}).catch(()=>$('cnt').textContent='Каталог недоступен офлайн — откройте при подключении.');
-const filt=()=>{const q=$('q').value.trim().toLowerCase(),cu=$('cu').value,ml=$('ml').value,tm=+$('tm').value||0;
- return all.filter(x=>(!q||(x.t+' '+x.c+' '+x.p+' '+x.g.join(' ')).toLowerCase().includes(q))&&(!cu||x.c===cu)&&(!ml||x.ml.includes(ml))&&(!tm||x.m<=tm))};
-function render(){const L=filt(),pages=Math.max(1,Math.ceil(L.length/PER));page=Math.min(page,pages-1);
- $('cnt').textContent=`${all.length} рецептов, найдено ${L.length}. Фото пока есть не у всех блюд.`;
- $('list').innerHTML=L.slice(page*PER,page*PER+PER).map(x=>`<button class="cat-card" data-id="${x.id}" data-pg="${x.pg}"><div class="cat-ph" aria-hidden="true"><div>${IC[x.p]||'🍽️'}<small>фото скоро</small></div></div><div class="cat-b"><h3>${E(x.t)}</h3><div class="cat-m">${E(x.c)} · ${x.m} мин · ${x.k} ккал</div></div></button>`).join('')||'<p>Ничего не нашлось — попробуйте другой запрос.</p>';
- const P=[];for(let i=0;i<pages;i++)if(i<2||i>pages-3||Math.abs(i-page)<3)P.push(i);else if(P[P.length-1]!=='…')P.push('…');
- $('pager').innerHTML=pages>1?P.map(i=>i==='…'?'<span>…</span>':`<button data-p="${i}" ${i===page?'aria-current="page"':''}>${i+1}</button>`).join(''):''}
-['q','cu','ml','tm'].forEach(id=>$(id).addEventListener('input',()=>{page=0;render()}));
-$('pager').onclick=e=>{const b=e.target.closest('button');if(b){page=+b.dataset.p;render();scrollTo({top:0,behavior:'smooth'})}};
-$('list').onclick=async e=>{const b=e.target.closest('.cat-card');if(!b)return;const pg=String(b.dataset.pg).padStart(3,'0');
- cache[pg]=cache[pg]||await fetch(`catalog/p-${pg}.json`).then(r=>r.json());const r=cache[pg].find(x=>x.id===b.dataset.id);
- $('dc').innerHTML=`<h2>${E(r.t)}</h2><p class="cat-m">${E(r.c)} · ${r.m} мин · ${r.k} ккал на порцию · порций: ${r.s}</p><h3>Ингредиенты (на порцию)</h3><ul>${r.ing.map(([n,g])=>`<li>${E(n)}${g?` — ${g} г`:''}</li>`).join('')}</ul><h3>Шаги</h3><ol>${r.st.map(s=>`<li>${E(s)}</li>`).join('')}</ol><p class="cat-src">${r.attr?E(r.attr):'Источник: '+E(r.ot||'')} ${r.src?`<a href="${E(r.src)}" target="_blank" rel="noopener">оригинал</a>`:''} · Лицензия: ${E(r.lic)}</p>`;$('dlg').showModal()};
-})();
-</script>
-</main><footer><div class="wrap"><div><a class="logo" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#c8553d"/><path d="M9 17.5c0-4 3.1-7 7-7s7 3 7 7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M7.5 19.5h17" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="8.2" r="1.6" fill="#fff"/></svg> Еда калькулятор</a><p style="margin-top:14px;max-width:420px">Подбирает ужин из реальных товаров под ваш бюджет, исключения и КБЖУ. Прототип, Калининград, 2026.</p><p style="margin-top:10px">Снимок цен: <span id="snap"></span>.</p></div><div><h4>Разделы</h4><ul><li><a href="index.html">Главная</a></li><li><a href="recipes.html">Рецепты и расчёты</a></li><li><a href="recipes.html#calc">Калькулятор нормы</a></li><li><a href="bot.html">Telegram-бот</a></li></ul></div><div><h4>Источники</h4><p class="credits" id="cr"></p></div></div></footer>
-<script src="app.js"></script><script src="site.js"></script>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Еда калькулятор</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="manifest" href="/food-calc-site/manifest.webmanifest"><link rel="apple-touch-icon" href="/food-calc-site/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Еда"><meta name="theme-color" content="#faf6ef"></head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  <script src="/food-calc-site/_expo/static/js/web/entry-80cc6424fa4d5a275529cd80c9ee8728.js" defer></script>
+</body>
+</html>
