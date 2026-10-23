@@ -1,6 +1,6 @@
 // Офлайн для «Еда калькулятор». HTML — всегда network-first (новая версия видна сразу),
 // хэшированные ассеты — cache-first. Версия оболочки = хэш сборки (подставляет build_pwa.sh).
-const V = '45a67ae93858', SHELL = 'shell-' + V, DATA = 'data-eda', IMG = 'img-eda';
+const V = '2f46e4963c7c', SHELL = 'shell-' + V, DATA = 'data-eda', IMG = 'img-eda';
 // Подпуть: на туннеле SW в корне (scope «/», оболочка /app/), на GitHub Pages — scope /food-calc-site/.
 const P = new URL(self.registration.scope).pathname.replace(/\/$/, ''), SUB = P !== '';
 const ROOT = P + '/', HTML_SRC = SUB ? ROOT : '/app/';
